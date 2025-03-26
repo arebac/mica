@@ -61,7 +61,7 @@ const Mica = () => {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               >
                 <>
-                  <h1 className={styles.title}>🐾 Mica's Co-Dad Agreement</h1>
+                  <h1 className={styles.title}>🐾 Mika's Co-Dad Agreement</h1>
                   <ul className={styles.list}>
                     <li>Every other weekend hangouts</li>
                     <li>Some holidays (to be negotiated over treats)</li>
@@ -103,9 +103,9 @@ const Mica = () => {
               >
                 <div className={styles.confirmation}>
                   🎉 It’s official — Maru has approved. Memo is the official
-                  Co-Dad of Mica
+                  Co-Dad of Mika
                   <br />
-                  This weekend belongs to Memo, and Mica will be hanging out
+                  This weekend belongs to Memo, and Mika will be hanging out
                   with him. 🐶❤️
                 </div>
               </motion.div>
