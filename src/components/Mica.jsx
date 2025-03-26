@@ -17,12 +17,11 @@ const Mica = () => {
   const publicKey = import.meta.env.VITE_YOUR_PUBLIC_KEY;
   const receiverEmail = import.meta.env.VITE_RECEIVER_EMAIL;
 
-
   const handleSubmit = () => {
     if (signature.trim().toLowerCase() === "maru" && approved) {
       setSubmitted(true);
       setError("");
-  
+
       emailjs
         .send(
           serviceID,
@@ -31,8 +30,7 @@ const Mica = () => {
             dog_name: "Mica",
             signer: "Maru",
             message: "Maru has officially approved the co-dad agreement!",
-            receiver_email: receiverEmail // 👈 this will receive the email
-
+            receiver_email: receiverEmail, // 👈 this will receive the email
           },
           publicKey
         )
@@ -60,9 +58,9 @@ const Mica = () => {
                 <li>Some holidays (to be negotiated over treats)</li>
                 <li>Full belly rub rights</li>
               </ul>
-  
+
               {error && <div className={styles.error}>{error}</div>}
-  
+
               <input
                 className={styles.input}
                 type="text"
@@ -70,7 +68,7 @@ const Mica = () => {
                 value={signature}
                 onChange={(e) => setSignature(e.target.value)}
               />
-  
+
               <label className={styles.checkboxWrapper}>
                 <input
                   type="checkbox"
@@ -80,15 +78,19 @@ const Mica = () => {
                 />
                 I, Maru, approve this message and co-dad agreement.
               </label>
-  
+
               <button className={styles.button} onClick={handleSubmit}>
                 Finalize the Paw-thority 🐾
               </button>
             </>
           ) : (
             <div className={styles.confirmation}>
-              🎉 Congratulations, Maru has approved. Memo is the official Co-Dad
-              of Mica
+              <div className={styles.confirmation}>
+                🎉 It’s official — the Co-Dad Agreement begins today!
+                <br />
+                This weekend belongs to Memo, and Mica will be hanging out with
+                him. 🐶❤️
+              </div>
             </div>
           )}
         </div>
