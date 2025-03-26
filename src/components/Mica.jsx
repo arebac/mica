@@ -4,6 +4,7 @@ import styles from "../components/mica.module.css";
 import emailjs from "@emailjs/browser";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@react-hook/window-size";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Mica = () => {
   const [signature, setSignature] = useState("");
@@ -50,49 +51,66 @@ const Mica = () => {
       {submitted && <Confetti width={width} height={height} />}
       <main className={styles.container}>
         <div className={styles.card}>
-          {!submitted ? (
-            <>
-              <h1 className={styles.title}>🐾 Mica's Co-Dad Agreement</h1>
-              <ul className={styles.list}>
-                <li>Every other weekend hangouts</li>
-                <li>Some holidays (to be negotiated over treats)</li>
-                <li>Full belly rub rights</li>
-              </ul>
+          <AnimatePresence mode="wait">
+            {!submitted ? (
+              <motion.div
+                key="form"
+                initial={{ opacity: 0, rotateY: -90 }}
+                animate={{ opacity: 1, rotateY: 0 }}
+                exit={{ opacity: 0, rotateY: 90 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                <>
+                  <h1 className={styles.title}>🐾 Mica's Co-Dad Agreement</h1>
+                  <ul className={styles.list}>
+                    <li>Every other weekend hangouts</li>
+                    <li>Some holidays (to be negotiated over treats)</li>
+                    <li>Full belly rub rights</li>
+                  </ul>
 
-              {error && <div className={styles.error}>{error}</div>}
+                  {error && <div className={styles.error}>{error}</div>}
 
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Maru's Signature (Type 'Maru')"
-                value={signature}
-                onChange={(e) => setSignature(e.target.value)}
-              />
+                  <input
+                    className={styles.input}
+                    type="text"
+                    placeholder="Maru's Signature (Type 'Maru')"
+                    value={signature}
+                    onChange={(e) => setSignature(e.target.value)}
+                  />
 
-              <label className={styles.checkboxWrapper}>
-                <input
-                  type="checkbox"
-                  className={styles.checkbox}
-                  checked={approved}
-                  onChange={() => setApproved(!approved)}
-                />
-                I, Maru, approve this message and co-dad agreement.
-              </label>
+                  <label className={styles.checkboxWrapper}>
+                    <input
+                      type="checkbox"
+                      className={styles.checkbox}
+                      checked={approved}
+                      onChange={() => setApproved(!approved)}
+                    />
+                    I, Maru, approve this message and co-dad agreement.
+                  </label>
 
-              <button className={styles.button} onClick={handleSubmit}>
-                Finalize the Paw-thority 🐾
-              </button>
-            </>
-          ) : (
-            <div className={styles.confirmation}>
-              <div className={styles.confirmation}>
-                🎉 It’s official — the Co-Dad Agreement begins today!
-                <br />
-                This weekend belongs to Memo, and Mica will be hanging out with
-                him. 🐶❤️
-              </div>
-            </div>
-          )}
+                  <button className={styles.button} onClick={handleSubmit}>
+                    Finalize the Paw-thority 🐾
+                  </button>
+                </>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="confirmation"
+                initial={{ opacity: 0, rotateY: -90 }}
+                animate={{ opacity: 1, rotateY: 0 }}
+                exit={{ opacity: 0, rotateY: 90 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                <div className={styles.confirmation}>
+                  🎉 It’s official — Maru has approved. Memo is the official
+                  Co-Dad of Mica
+                  <br />
+                  This weekend belongs to Memo, and Mica will be hanging out
+                  with him. 🐶❤️
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </main>
     </>
